@@ -8,6 +8,8 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
   profiles:
     include: oauth
+  session:
+    store-type: jdbc
 jackson:
   property-naming-strategy: SNAKE_CASE
 
