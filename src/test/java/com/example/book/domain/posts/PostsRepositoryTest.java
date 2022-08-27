@@ -55,7 +55,7 @@ public class PostsRepositoryTest {
         List<Posts> postsList = postsRepository.findAll();
 
         //then
-        Posts posts = postsList.get(1);
+        Posts posts = postsList.get(0);
 
         System.out.print(posts.getCreatedAt() + " " + posts.getModifiedAt());
 
