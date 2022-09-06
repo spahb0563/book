@@ -1,18 +1,20 @@
 package com.example.book.domain.posts;
 
-
+import com.example.book.config.JpaConfig;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.FilterType;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@DataJpaTest
+@DataJpaTest(includeFilters = @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE,
+        classes = JpaConfig.class))
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class PostsRepositoryTest {
 
@@ -42,9 +44,7 @@ public class PostsRepositoryTest {
 
     @Test
     public void baseTimeEntityRegister() {
-
         //given
-        LocalDate now = LocalDate.now();
         postsRepository.save(Posts.builder()
                         .title("title")
                         .content("content")
@@ -57,7 +57,7 @@ public class PostsRepositoryTest {
         //then
         Posts posts = postsList.get(0);
 
-        System.out.print(posts.getCreatedAt() + " " + posts.getModifiedAt());
+        System.out.println(posts.getCreatedAt() + " " + posts.getModifiedAt());
 
         assertThat(posts.getCreatedAt()).isBefore(LocalDateTime.now());
         assertThat(posts.getModifiedAt()).isBefore(LocalDateTime.now());

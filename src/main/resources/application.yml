@@ -1,17 +1,16 @@
 spring:
   jpa:
     show-sql: true
-  datasource:
-    url: jdbc:mysql://localhost:3306/book?useSSL=false&useUnicode=true&serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true&createDatabaseIfNotExist=true
-    username: root
-    password: root
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect #mysql sql문 형식으로 로그에 출력햊무
   profiles:
     include: oauth;
+  h2:
+    console:
+      enabled: true
   session:
     store-type: jdbc
-jackson:
-  property-naming-strategy: SNAKE_CASE
 logging:
   level:
     root: info
