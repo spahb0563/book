@@ -18,7 +18,7 @@ import javax.servlet.http.HttpSession;
 public class IndexController {
 
     private final PostsService postsService;
-    @GetMapping("")
+    @GetMapping("/")
     public String index(Model model, @LoginUser SessionUser user) {
         model.addAttribute("posts", postsService.findAllDesc());
 
@@ -28,12 +28,12 @@ public class IndexController {
         return "index";
     }
 
-    @GetMapping("posts/save")
+    @GetMapping("/posts/save")
     public String postsSave() {
         return "posts-save";
     }
 
-    @GetMapping("posts/update/{id}")
+    @GetMapping("/posts/update/{id}")
     public String postsUpdate(@PathVariable Long id, Model model) {
 
         model.addAttribute("posts", postsService.findById(id));
