@@ -7,7 +7,11 @@ spring:
     password: root
     driver-class-name: com.mysql.cj.jdbc.Driver
   profiles:
-    include: oauth
+    group:
+      local-real: local-real, oauth
+      real: real, real-db, oauth
+      real1: real1, real-db, oauth
+      real2: real2, real-db, oauth
   session:
     store-type: jdbc
 jackson:
